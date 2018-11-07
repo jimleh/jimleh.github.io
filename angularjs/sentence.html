@@ -79,9 +79,21 @@
                     <button id="submitBtn" ng-click="$ctrl.checkAnswer()" class="btn btn-success">Next!</button>
                 </div>
             </div>
+            <div id="resultDiv" class="hidden">
+                <p>Your final score is: {{$ctrl.score}} / {{$ctrl.maxCount}}</p>
+                <h1 ng-if="$ctrl.score == 0">0 points? Really?...</h1>
+                <h1 ng-if="$ctrl.score == $ctrl.maxCount">Perfect!</h1>
+                <h1 ng-if="$ctrl.score == $ctrl.maxCount -1">Close!</h1>
+                <h1 ng-if="$ctrl.score > $ctrl.maxCount / 2">Decent!</h1>
+                <h1 ng-if="$ctrl.score == $ctrl.maxCount / 2">Better than nothing!</h1>
+                <h1 ng-if="$ctrl.score < $ctrl.maxCount / 2 && $ctrl.score > 0">Try again!</h1>
+                <br/>
+                <button id="submitBtn" ng-click="$ctrl.restart()" class="btn btn-success">Play again!</button>
+            </div>
         </div>
     </div>
-    <script src="https://jimleh.github.io/angularjs/js/sentence.js"></script>
+    <script src="https://jimleh.github.io/angularjs/js/sentence.js"></script> 
+    <!--<script src="js/sentence.js"></script> -->
 </body>
 </html>
 
