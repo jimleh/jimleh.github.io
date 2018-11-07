@@ -1,0 +1,86 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <link href="../shared/css/styles.css" rel="stylesheet"/>
+    <title>jimleh's SentenceBuilder</title>
+</head>
+<body>
+	<div class="content container"> 
+        <a href="index.html"><span class="glyphicon glyphicon-arrow-left"></span> Back to AngularJS</a>
+        <div id="sentenceDiv" class="body-content hidden" ng-app="sentenceBuilder" ng-controller="sentenceBuilderController as $ctrl" ng-init="$ctrl.init()">
+            <div>
+                <h1>{{ $ctrl.pageTitle }}</h1>
+                <p ng-repeat="row in $ctrl.pageDesc">{{row}}</p>
+            </div>
+            <div>
+                <h4>Button colours</h4>
+                <ul class="list-unstyled list-inline">
+                    <li>
+                        <h4><label class="label label-success">Correct!</label></h4>
+                    </li>
+                    <li>
+                        <h4><label class="label label-info">Can be clicked again!</label></h4>
+                    </li>
+                    <li>
+                        <h4><label class="label label-warning">Wrong place!</label></h4>
+                    </li>
+                    <li>
+                        <h4><label class="label label-danger">Incorrect!</label></h4>
+                    </li>
+                </ul>
+                <hr />
+            </div>
+            <div id="startBtnDiv" class="disabled">
+                <div class="input-group">
+                    <div class="input-group-addon">
+                        <span class="input-group-text">Number of sentences:</span>
+                    </div>
+                    <input class="form-control" type="number" ng-model="$ctrl.maxCount" min="1"/> 
+                </div>
+                <br/>
+                <button id="startBtn" class="btn btn-success" ng-click="$ctrl.startQuiz()">Start!</button>
+            </div>
+            <div id="quizDiv" class="hidden">
+                <h3><label id="correctAnswerLabel" class="label label-default">Correct sentence: {{$ctrl.correctAnswer}}</label></h3>
+                <h3><label class="label label-default" id="scoreLabel">Score: {{$ctrl.score}} / {{$ctrl.maxCount}}</label></h3>
+                <br />
+                <div>
+                    <fieldset>
+                        <label>Words</label>
+                        <ul class="list-inline list-unstyled">
+                            <li ng-repeat="word in $ctrl.shuffledWords track by $index">
+                                <button class="btn btn-success" ng-if="$ctrl.isGreen(word)" ng-click="$ctrl.updateAnswer(word)">{{ word }} </button>
+                                <button class="btn btn-info" ng-if="$ctrl.isBlue(word)" ng-click="$ctrl.updateAnswer(word)">{{ word }} </button>
+                                <button class="btn btn-warning" ng-if="$ctrl.isOrange(word)" ng-click="$ctrl.updateAnswer(word)">{{ word }} </button>
+                                <button class="btn btn-default" ng-if="$ctrl.isWhite(word)" ng-click="$ctrl.updateAnswer(word)">{{ word }}</button>
+                            </li>
+                        </ul>
+                    </fieldset>
+                </div>
+                <div id="invalidWordsDiv" class="hidden">
+                    <fieldset>
+                        <label>Invalid Words</label>
+                        <ul class="list-inline list-unstyled">
+                            <li ng-repeat="word in $ctrl.invalidWords track by $index">
+                                <button class="btn btn-danger" ng-click="$ctrl.updateAnswer(word)">{{ word }}</button>
+                            </li>
+                        </ul>
+                    </fieldset>
+                </div>
+                <div class="form-group row">
+                    <span id="inputSpan" class="form-control" contenteditable="true" placeholder="Enter answer" ng-model="$ctrl.answer" ng-change="$ctrl.checkInput()"></span>
+                    <br />
+                    <button id="submitBtn" ng-click="$ctrl.checkAnswer()" class="btn btn-success">Next!</button>
+                </div>
+            </div>
+        </div>
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+        <script src="../app/sentencebuilder.js"></script>
+    </div>
+</body>
+</html>
+

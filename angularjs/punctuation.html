@@ -1,0 +1,51 @@
+﻿@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div id="sentenceDiv" class="body-content hidden" ng-app="punctuationExercise" ng-controller="punctuationController as $ctrl" ng-init="$ctrl.init()">
+    <div>
+        <h1>{{ $ctrl.pageTitle }}</h1>
+        <p ng-repeat="row in $ctrl.pageDesc">{{row}}</p>
+        <div>
+            <h4>Button colours</h4>
+            <ul class="list-unstyled list-inline">
+                <li>
+                    <h4><label class="label label-success">Correct!</label></h4>
+                </li>
+                <li>
+                    <h4><label class="label label-info">Can be clicked again!</label></h4>
+                </li>
+                <li>
+                    <h4><label class="label label-warning">Wrong place!</label></h4>
+                </li>
+                <li>
+                    <h4><label class="label label-danger">Incorrect!</label></h4>
+                </li>
+            </ul>
+            <hr />
+        </div>
+    </div>
+    <div>
+        <button id="startBtn" class="btn btn-success disabled" ng-click="$ctrl.startQuiz()">Start!</button>
+    </div>
+    <div id="quizDiv" class="hidden">
+        <h3><label id="correctAnswerLabel" class="label label-default">Correct sentence: {{$ctrl.correctAnswer}}</label></h3>
+        <h3><label class="label label-default" id="scoreLabel">Score: {{$ctrl.score}} / {{$ctrl.count}}</label></h3>
+        <div id="questionDiv">
+            <h3>{{$ctrl.answer}}</h3>
+        </div>
+        <div>
+            <ul class="list-unstyled list-inline list-group">
+                <li ng-repeat="mark in $ctrl.punctuationMarks track by $index">
+                    <button ng-if="$ctrl.isGreen(mark)" class="btn btn-success btn-lg" ng-click="$ctrl.updateAnswer(mark)">{{mark}}</button>
+                    <button ng-if="$ctrl.isBlue(mark)" class="btn btn-info btn-lg" ng-click="$ctrl.updateAnswer(mark)">{{mark}}</button>
+                    <button ng-if="$ctrl.isOrange(mark)" class="btn btn-warning btn-lg" ng-click="$ctrl.updateAnswer(mark)">{{mark}}</button>
+                    <button ng-if="$ctrl.isRed(mark)" class="btn btn-danger btn-lg" ng-click="$ctrl.updateAnswer(mark)">{{mark}}</button>
+                    <button ng-if="$ctrl.isWhite(mark)" class="btn btn-default btn-lg" ng-click="$ctrl.updateAnswer(mark)">{{mark}}</button>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+

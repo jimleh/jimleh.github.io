@@ -1,0 +1,13 @@
+body {
+    padding-top: 50px;
+    padding-bottom: 25px;
+    font-family: verdana, arial, sans-serif;
+    font-size: 14px;
+    line-height: 1.5;
+    color: #2f2f2f;
+    background-color: #fdfdfd;
+}
+
+input[type="text"], input[type="number"] {
+    max-width: 100px; 
+}
