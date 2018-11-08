@@ -85,11 +85,11 @@
                 <h1 ng-if="$ctrl.score == 0">0 points? Really?...</h1>
                 <h1 ng-if="$ctrl.score == $ctrl.maxCount">Perfect!</h1>
                 <h1 ng-if="$ctrl.score == $ctrl.maxCount -1">Close!</h1>
-                <h1 ng-if="$ctrl.score > $ctrl.maxCount / 2">Decent!</h1>
+                <h1 ng-if="$ctrl.score > $ctrl.maxCount / 2 && $ctrl.score != $ctrl.maxCount -1">Decent!</h1>
                 <h1 ng-if="$ctrl.score == $ctrl.maxCount / 2">Better than nothing!</h1>
                 <h1 ng-if="$ctrl.score < $ctrl.maxCount / 2 && $ctrl.score > 0">Try again!</h1>
                 <br/>
-                <button ng-click="$ctrl.restart()" class="btn btn-success">Play again!</button>
+                <button id="restartBtn" ng-click="$ctrl.restart()" class="btn btn-success">Play again!</button>
             </div>
         </div>
     </div>

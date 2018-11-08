@@ -123,6 +123,7 @@
                 else {
                     addToElementClassList("quizDiv", ["hidden"]);
                     removeFromElementClassList("resultDiv", ["hidden"]);
+                    removeFromElementClassList("restartBtn", ["disabled"]);
                 }
             };
             // Gets the sentences from the database
