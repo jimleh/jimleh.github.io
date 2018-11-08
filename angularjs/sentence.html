@@ -13,7 +13,7 @@
 </head>
 <body>
 	<div class="content container"> 
-        <a href="index.html"><span class="glyphicon glyphicon-arrow-left"></span> Back to AngularJS</a>
+        <p><a href="../angularjs.html"><span class="glyphicon glyphicon-arrow-left"></span> Back to AngularJS</a></p>
         <div id="sentenceDiv" class="body-content hidden" ng-app="sentenceBuilder" ng-controller="sentenceBuilderController as $ctrl" ng-init="$ctrl.init()">
             <div>
                 <h1>{{ $ctrl.pageTitle }}</h1>
@@ -75,7 +75,7 @@
                     </fieldset>
                 </div>
                 <div class="form-group row">
-                    <span id="inputSpan" class="form-control" contenteditable="true" placeholder="Enter answer" ng-model="$ctrl.answer" ng-change="$ctrl.checkInput()"></span>
+                    <span id="inputSpan" class="form-control" contenteditable="true" ng-model="$ctrl.answer" ng-change="$ctrl.checkInput()"></span>
                     <br />
                     <button id="submitBtn" ng-click="$ctrl.checkAnswer()" class="btn btn-success">Next!</button>
                 </div>
@@ -89,11 +89,16 @@
                 <h1 ng-if="$ctrl.score == $ctrl.maxCount / 2">Better than nothing!</h1>
                 <h1 ng-if="$ctrl.score < $ctrl.maxCount / 2 && $ctrl.score > 0">Try again!</h1>
                 <br/>
-                <button id="submitBtn" ng-click="$ctrl.restart()" class="btn btn-success">Play again!</button>
+                <button ng-click="$ctrl.restart()" class="btn btn-success">Play again!</button>
             </div>
         </div>
     </div>
-    <script src="https://jimleh.github.io/angularjs/js/sentence.js"></script> 
+    <div class="footer navbar-fixed-bottom">
+        <p class="text-center">
+            &copy; 2018 jimleh
+        </p>
+    </div>
+    <script src="https://jimleh.github.io/app/sentencebuilder.js"></script> 
     <!--<script src="js/sentence.js"></script> -->
 </body>
 </html>

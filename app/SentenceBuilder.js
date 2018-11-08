@@ -121,7 +121,8 @@
                     $ctrl.count++;
                 }
                 else {
-                    alert("ENDED!");
+                    addToElementClassList("quizDiv", ["hidden"]);
+                    removeFromElementClassList("resultDiv", ["hidden"]);
                 }
             };
             // Gets the sentences from the database
@@ -153,8 +154,6 @@
             // Some more variables
             $ctrl.shuffledWords = [];
             $ctrl.correctAnswer;
-            $ctrl.score = 0;
-            $ctrl.count = 0;
             $ctrl.pageTitle = "Build Sentences!";
             $ctrl.pageDesc = [
                 "Use the words listed to build sentences, you have 30 seconds to answer.",
@@ -288,6 +287,9 @@
             // Will be called when controller div is initialised
             $ctrl.init = function () {
                 removeFromElementClassList("sentenceDiv", ["hidden"]);
+                
+                $ctrl.score = 0;
+                $ctrl.count = 0;
 
                 // with database and webapi
                 //getData();
@@ -303,14 +305,26 @@
                 ];
                 sentences = shuffleArray(angular.copy(originalSentences));
                 $ctrl.maxCount = 2;
-                removeFromElementClassList("startBtnDiv", ["disabled"]);            
+                removeFromElementClassList("startBtn", ["disabled"]);            
             };
 
             $ctrl.startQuiz = function () {
+                // if someone messed with the value of maxCount
+                if(isNaN($ctrl.maxCount) || $ctrl.maxCount < 1)
+                {
+                    $ctrl.maxCount = 2;
+                }
                 getRandomQuestion();
                 timer = $interval($ctrl.checkAnswer, time);
                 addToElementClassList("startBtnDiv", ["hidden"]);
                 removeFromElementClassList("quizDiv", ["hidden"]);
+            };
+
+            $ctrl.restart = function() {
+                addToElementClassList("resultDiv", ["hidden"]);
+                removeFromElementClassList("startBtnDiv", ["hidden"]);
+                removeFromElementClassList("submitBtn", ["disabled"]);
+                $ctrl.init();
             };
     }]);
 
