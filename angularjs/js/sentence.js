@@ -302,7 +302,14 @@
                     "This is madness!",
                     "How much wood would a woodchuck chuck if a woodchuck could chuck wood?",
                     "A woodchuck would chuck as much wood as a woodchuck could chuck if a woodchuck could chuck wood.",
-                    "Where's the peck of pickled peppers Peter Piper picked?"
+                    "Peter Piper picked a peck of pickled peppers.",
+                    "A peck of pickled peppers Peter Piper picked.",
+                    "Where's the peck of pickled peppers Peter Piper picked?",
+                    "How can a clam cram in a clean cream can?",
+                    "Send toast to ten tense stout saints' ten tall tents.",
+                    "Can you can a can as a canner can can a can?",
+                    "You cuss, I cuss, we all cuss, for asparagus!",
+                    "Picky people pick Peter Pan Peanut-Butter, 'tis the peanut-butter picky people pick."
                 ];
                 sentences = shuffleArray(angular.copy(originalSentences));
                 $ctrl.maxCount = 2;
@@ -325,6 +332,10 @@
                 addToElementClassList("resultDiv", ["hidden"]);
                 removeFromElementClassList("startBtnDiv", ["hidden"]);
                 removeFromElementClassList("submitBtn", ["disabled"]);
+                // Re-enable the contenteditable span
+                var inputSpan = document.getElementById("inputSpan");
+                inputSpan.innerHTML = "";
+                inputSpan.setAttribute("contenteditable", "true");
                 $ctrl.init();
             };
     }]);

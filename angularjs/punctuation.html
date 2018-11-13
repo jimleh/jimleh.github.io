@@ -12,57 +12,81 @@
     <title>jimleh's PunctuationExercise</title>
 </head>
 <body>
-    <div id="sentenceDiv" class="body-content hidden" ng-app="punctuationExercise" ng-controller="punctuationController as $ctrl" ng-init="$ctrl.init()">
-        <div>
-            <h1>{{ $ctrl.pageTitle }}</h1>
-            <p ng-repeat="row in $ctrl.pageDesc">{{row}}</p>
+    <div class="content container"> 
+        <p><a href="../angularjs.html"><span class="glyphicon glyphicon-arrow-left"></span> Back to AngularJS</a></p>
+        <div id="sentenceDiv" class="hidden" ng-app="punctuationExercise" ng-controller="punctuationController as $ctrl" ng-init="$ctrl.init()">
             <div>
-                <h4>Button colours</h4>
-                <ul class="list-unstyled list-inline">
-                    <li>
-                        <h4><label class="label label-success">Correct!</label></h4>
-                    </li>
-                    <li>
-                        <h4><label class="label label-info">Can be clicked again!</label></h4>
-                    </li>
-                    <li>
-                        <h4><label class="label label-warning">Wrong place!</label></h4>
-                    </li>
-                    <li>
-                        <h4><label class="label label-danger">Incorrect!</label></h4>
-                    </li>
-                </ul>
-                <hr />
+                <h1>{{ $ctrl.pageTitle }}</h1>
+                <p ng-repeat="row in $ctrl.pageDesc">{{row}}</p>
+                <div>
+                    <h4>Button colours</h4>
+                    <ul class="list-unstyled list-inline">
+                        <li>
+                            <h4><label class="label label-success">Correct!</label></h4>
+                        </li>
+                        <li>
+                            <h4><label class="label label-info">Can be clicked again!</label></h4>
+                        </li>
+                        <li>
+                            <h4><label class="label label-warning">Wrong place!</label></h4>
+                        </li>
+                        <li>
+                            <h4><label class="label label-danger">Incorrect!</label></h4>
+                        </li>
+                    </ul>
+                    <hr />
+                </div>
             </div>
-        </div>
-        <div>
-            <button id="startBtn" class="btn btn-success disabled" ng-click="$ctrl.startQuiz()">Start!</button>
-        </div>
-        <div id="quizDiv" class="hidden">
-            <h3><label id="correctAnswerLabel" class="label label-default">Correct sentence: {{$ctrl.correctAnswer}}</label></h3>
-            <h3><label class="label label-default" id="scoreLabel">Score: {{$ctrl.score}} / {{$ctrl.count}}</label></h3>
-            <div id="questionDiv">
-                <h3>{{$ctrl.answer}}</h3>
+            <div id="startBtnDiv">
+                <div class="input-group">
+                    <div class="input-group-addon">
+                        <span class="input-group-text">Number of sentences:</span>
+                    </div>
+                    <input class="form-control" type="number" ng-model="$ctrl.maxCount" min="1"/> 
+                </div>
+                <br/>
+                <button id="startBtn" class="btn btn-success disabled" ng-click="$ctrl.startQuiz()">Start!</button>
             </div>
-            <div>
-                <ul class="list-unstyled list-inline list-group">
-                    <li ng-repeat="mark in $ctrl.punctuationMarks track by $index">
-                        <button ng-if="$ctrl.isGreen(mark)" class="btn btn-success btn-lg" ng-click="$ctrl.updateAnswer(mark)">{{mark}}</button>
-                        <button ng-if="$ctrl.isBlue(mark)" class="btn btn-info btn-lg" ng-click="$ctrl.updateAnswer(mark)">{{mark}}</button>
-                        <button ng-if="$ctrl.isOrange(mark)" class="btn btn-warning btn-lg" ng-click="$ctrl.updateAnswer(mark)">{{mark}}</button>
-                        <button ng-if="$ctrl.isRed(mark)" class="btn btn-danger btn-lg" ng-click="$ctrl.updateAnswer(mark)">{{mark}}</button>
-                        <button ng-if="$ctrl.isWhite(mark)" class="btn btn-default btn-lg" ng-click="$ctrl.updateAnswer(mark)">{{mark}}</button>
-                    </li>
-                </ul>
+            <div id="quizDiv" class="hidden">
+                <h3><label id="correctAnswerLabel" class="label label-default">Correct sentence: {{$ctrl.correctAnswer}}</label></h3>
+                <h3><label class="label label-default" id="scoreLabel">Score: {{$ctrl.score}} / {{$ctrl.maxCount}}</label></h3>
+                <div id="questionDiv">
+                    <h3>{{$ctrl.answer}}</h3>
+                </div>
+                <div>
+                    <ul class="list-unstyled list-inline list-group">
+                        <li ng-repeat="mark in $ctrl.punctuationMarks track by $index">
+                            <button ng-if="$ctrl.isGreen(mark)" class="btn btn-success btn-lg" ng-click="$ctrl.updateAnswer(mark)">{{mark}}</button>
+                            <button ng-if="$ctrl.isBlue(mark)" class="btn btn-info btn-lg" ng-click="$ctrl.updateAnswer(mark)">{{mark}}</button>
+                            <button ng-if="$ctrl.isOrange(mark)" class="btn btn-warning btn-lg" ng-click="$ctrl.updateAnswer(mark)">{{mark}}</button>
+                            <button ng-if="$ctrl.isRed(mark)" class="btn btn-danger btn-lg" ng-click="$ctrl.updateAnswer(mark)">{{mark}}</button>
+                            <button ng-if="$ctrl.isWhite(mark)" class="btn btn-default btn-lg" ng-click="$ctrl.updateAnswer(mark)">{{mark}}</button>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div id="resultDiv" class="hidden">
+                <p>Your final score is:</p>
+                <h1>{{(($ctrl.score / $ctrl.maxCount) * 100).toFixed(2)}}%</h1>
+                <h1 ng-if="$ctrl.score < 0">... Really?...</h1>
+                <h1 ng-if="$ctrl.score == 0">0? well, better luck next time?...</h1>
+                <h1 ng-if="$ctrl.score == $ctrl.maxCount">Perfect!</h1>
+                <h1 ng-if="$ctrl.score == $ctrl.maxCount -1">Close!</h1>
+                <h1 ng-if="$ctrl.score > $ctrl.maxCount / 2 && $ctrl.score != $ctrl.maxCount -1 && $ctrl.score != $ctrl.maxCount">Decent!</h1>
+                <h1 ng-if="$ctrl.score == $ctrl.maxCount / 2 && $ctrl.score != $ctrl.maxCount -1">Better than nothing!</h1>
+                <h1 ng-if="$ctrl.score < $ctrl.maxCount / 2 && $ctrl.score > 0">Try again!</h1>
+                <br/>
+                <button id="restartBtn" ng-click="$ctrl.restart()" class="btn btn-success">Play again!</button>
             </div>
         </div>
     </div>
     <div class="footer navbar-fixed-bottom">
-            <p class="text-center">
-                &copy; 2018 jimleh
-            </p>
-        </div>
-        <script src="https://jimleh.github.io/app/Punctuation.js"></script> 
+        <p class="text-center">
+            &copy; 2018 jimleh
+        </p>
+    </div>
+    <script src="https://jimleh.github.io/angularjs/js/punctuation.js"></script> 
+    <!--<script src="js/punctuation.js"></script>--> 
 </body>
 </html>
     
