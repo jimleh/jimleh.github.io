@@ -1,0 +1,27 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>jimleh's GitHub page</title>
+
+    <!-- Github Pages hack to allow SPA refresh without receiving 404. -->
+    <!-- source: https://shermandigital.com/blog/fix-404-errors-from-angular-projects-hosted-on-github-pages/ -->
+    <script>
+        // Store the URL the user was trying to access when receiving the 404.
+        sessionStorage.redirect = location.href;
+    </script>
+
+    <!-- Immediately redirect to the base URL so we can use the SPA routing. -->
+    <meta http-equiv="refresh" content="0;URL='/'">
+    <!-- /Github Pages hack. -->
+
+    <base href="/">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
+</head>
+
+<body>
+</body>
+
+</html>
