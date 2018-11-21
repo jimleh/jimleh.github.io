@@ -25,6 +25,7 @@
     <script>
         (function () {
             var redirect = location.href;
+			console.log(location.href);
 
             if (redirect && redirect != location.href) {
                 history.replaceState(null, null, redirect.replace("https://jimleh.github.io/", ''));
