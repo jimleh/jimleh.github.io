@@ -9,7 +9,7 @@
     <!-- source: https://shermandigital.com/blog/fix-404-errors-from-angular-projects-hosted-on-github-pages/ -->
     <script>
         // Store the URL the user was trying to access when receiving the 404.
-        sessionStorage.redirect = location.href;
+        sessionStorage.redirect = location.href.replace("https://jimleh.github.io/");
         console.log(location.href);
     </script>
 
