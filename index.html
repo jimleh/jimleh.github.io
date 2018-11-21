@@ -21,22 +21,6 @@
 <link rel="stylesheet" href="styles.4b1da0d1be39c0b1fb04.css"></head>
 
 <body>
-  <!-- Github Pages hack to allow SPA refresh without receiving 404. -->
-  <!-- source: https://shermandigital.com/blog/fix-404-errors-from-angular-projects-hosted-on-github-pages/ -->
-  <script>
-    (function () {
-      // Retrieve the URL the user was trying to access when receiving the 404.
-      var redirect = sessionStorage.redirect;
-      // Remove the URL from sessionStorage.
-      delete sessionStorage.redirect;
-      // Check if we actually need to redirect.
-      if (redirect && redirect != location.href) {
-        // We need to redirect to the URL the user was trying to access.
-        //history.replaceState(null, null, redirect);
-      }
-    })();
-  </script>
-  <!-- /Github Pages hack. -->
   <app-root></app-root>
 <script type="text/javascript" src="runtime.ec2944dd8b20ec099bf3.js"></script><script type="text/javascript" src="polyfills.c6871e56cb80756a5498.js"></script><script type="text/javascript" src="main.af3d7016f2054bcb7328.js"></script></body>
 
